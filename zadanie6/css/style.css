@@ -1,0 +1,18 @@
+﻿body {
+	background-image: url("background.jpg");
+}
+
+.margin{
+	margin: 20px;
+}
+
+.center {
+	width: 40%;
+	height: 90%;
+	margin: auto auto;
+	background-color: white;
+	opacity: 0.8;
+	padding: 30px;
+	border: 5px solid grey;
+	color: black;
+}
