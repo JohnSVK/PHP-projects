@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>Google Charts</title>
+		
+	<style>
+		div {
+			float: left;
+		}
+		
+		.chart {
+			clear: left;
+			
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+	
+    <!--nacitanie AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+		var dataValues = [[20, 11, 13, 7, 5, 0, 1], [20, 19, 6, 3, 1, 0, 0], [9, 19, 22, 0, 0, 0, 3]];
+		var labelTitles = ['sk. rok 2012/13', 'sk. rok 2013/14', 'sk. rok 2014/15'];
+	
+		var chart;
+		var graphNo;
+		var data;
+		var options;
+	
+		for(var i=0;i<2;i++) {
+			graphNo = 0;
+			
+			dataValues.forEach(function(values) {
+				data = new google.visualization.DataTable();
+				data.addColumn('string', 'znamka');
+				data.addColumn('number', 'pocet studentov');
+				data.addRows([
+				  ['A', values[0]],
+				  ['B', values[1]],
+				  ['C', values[2]],
+				  ['D', values[3]],
+				  ['E', values[4]],
+				  ['FX', values[5]],
+				  ['FN', values[6]]
+				]);
+
+				options = {'title': labelTitles[graphNo],
+							   'width': 300,
+							   'height':300};
+				
+				if(i == 0) {
+					chart = new google.visualization.BarChart(document.getElementById('barchart_div' + (graphNo + 1)));
+				} else {
+					chart = new google.visualization.PieChart(document.getElementById('piechart_div' + (graphNo + 1)));
+				}
+				chart.draw(data, options);
+			
+				graphNo++;
+			});
+		}
+      }
+    </script>
+  </head>
+
+  <body>
+	<h1>Google charts</h1>
+  
+	<div class="chart">
+		<div id="barchart_div1"></div>
+		<div id="barchart_div2"></div>
+		<div id="barchart_div3"></div>
+	</div>
+    <div class="chart">
+		<div id="piechart_div1"></div>
+		<div id="piechart_div2"></div>
+		<div id="piechart_div3"></div>
+	</div>
+  </body>
+</html>
